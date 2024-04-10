@@ -4,6 +4,8 @@ set cache_write work
 set cache_read  work
 define_design_lib WORK -path work
 
+source dc_setup.tcl
+
 # Elaborate Design
 set DESIGN    "CONV_ACC"
 
