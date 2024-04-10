@@ -15,6 +15,7 @@ endif
 mkdir build 
 cd build
 cp ../Makefile ./
+source /synopsys/synopsys.csh
 make comp -s
 
 echo "\033[32m[ConvKernel: ] Copy benchmarks, under mode: ${MODE} \033[0m"
