@@ -60,8 +60,9 @@ compile_ultra
 # Write Netlist
 change_names -rules verilog -hierarchy
 write_file -hierarchy -format verilog -output ../rpt/${DESIGN}.syn.v
-write -format ddc -hierarchy -output ../rpt/${DESIGN}_mapped.ddc
-write_sdf ../rpt/CONV_ACC_time.sdf
+write -format ddc -hierarchy -output ../rpt/${DESIGN}_mapped.ddc
+write_sdf ../rpt/CONV_ACC_time.sdf
+
 # Reports
 redirect ../rpt/${DESIGN}_timing.rpt    "report_timing"
 redirect ../rpt/${DESIGN}_area.rpt      "report_area -hier"
