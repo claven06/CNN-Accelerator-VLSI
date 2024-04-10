@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import csv
 golden_result = csv.reader(open("../src/build/ofm.txt"), delimiter=',')
 my_result     = csv.reader(open("../src/build/conv_acc_out.txt"), delimiter=' ')
