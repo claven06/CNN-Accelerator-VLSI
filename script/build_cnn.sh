@@ -2,6 +2,11 @@
 # you also need to change tb_conv.v to suit your mode 
 set MODE="8x8t"
 
+# Generate reports directory
+cd ../
+mkdir rpt/
+cd script/
+
 # Compile cnn kernels
 # echo "\033[32m[ConvKernel: ] Start to build whole systems \033[0m"
 cd ../src/
