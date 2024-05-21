@@ -31,9 +31,9 @@ always @(posedge clk or negedge rst_n)
             product[i] <= 0;
         end
 
-        for(i = 0; i < 2; i = i + 1) 
+        for(j = 0; j < 2; j = j + 1) 
         begin
-            pp_sum[i] <= 0;
+            pp_sum[j] <= 0;
         end
         p_sum <= 0;
     end
