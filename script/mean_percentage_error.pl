@@ -92,7 +92,9 @@ sub get_mpe { # Calculate the mean percentage error for the results
 
         foreach my $num (@$benchmark_ref) {
             # mean percentage error = (|benchmark - test| / benchmark) x 100%
-            if ($$benchmark_ref[$counter] == $$test_ref[$counter]) {
+            if ($$benchmark_ref[$counter] == 0) {
+                $percentage_error = 0;
+            } elsif ($$benchmark_ref[$counter] == $$test_ref[$counter]) {
                 $percentage_error = 0;
             } elsif ($$benchmark_ref[$counter] > $$test_ref[$counter]) {
                 $percentage_error = ($$benchmark_ref[$counter] - $$test_ref[$counter]) * 100 / $$benchmark_ref[$counter];
