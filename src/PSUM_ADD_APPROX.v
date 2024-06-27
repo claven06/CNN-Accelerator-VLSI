@@ -60,7 +60,7 @@ module PSUM_ADD #(
         .A(pe2_data),
         .B(pe3_data),
         .Cin(1'b0),
-        .Sum(adderl0_output[1]),
+        .Sum(adderl0_output[1])
     );
 
     ADD_APPROX #(
@@ -71,7 +71,7 @@ module PSUM_ADD #(
         .A(psum0),
         .B(psum1),
         .Cin(1'b0),
-        .Sum(adderl1_output),
+        .Sum(adderl1_output)
     );
 
     ADD_APPROX #(
@@ -82,7 +82,7 @@ module PSUM_ADD #(
         .A(psum2),
         .B(fifo_data),
         .Cin(1'b0),
-        .Sum(adderl2_output),
+        .Sum(adderl2_output)
     );
 
 
