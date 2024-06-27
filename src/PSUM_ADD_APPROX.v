@@ -4,7 +4,7 @@
 /// Three stages pipelined adder tree
 module PSUM_ADD #(
     parameter data_width = 25,
-    parameter approxBits = 6
+    parameter approx_bits = 6
 ) (
     input clk,
     input rst_n,
@@ -43,7 +43,7 @@ module PSUM_ADD #(
 
     ADD_APPROX #(
     .bitWidth(data_width), 
-    .approxBits(approxBits)
+    .approxBits(approx_bits)
     ) 
     ADD0_LAYER0 (
         .A(pe0_data),
@@ -54,7 +54,7 @@ module PSUM_ADD #(
 
     ADD_APPROX #(
     .bitWidth(data_width), 
-    .approxBits(approxBits)
+    .approxBits(approx_bits)
     ) 
     ADD1_LAYER0 (
         .A(pe2_data),
@@ -65,7 +65,7 @@ module PSUM_ADD #(
 
     ADD_APPROX #(
     .bitWidth(data_width), 
-    .approxBits(approxBits)
+    .approxBits(approx_bits)
     ) 
     ADD0_LAYER1 (
         .A(psum0),
@@ -76,7 +76,7 @@ module PSUM_ADD #(
 
     ADD_APPROX #(
     .bitWidth(data_width), 
-    .approxBits(approxBits)
+    .approxBits(approx_bits)
     ) 
     ADD0_LAYER2 (
         .A(psum2),
