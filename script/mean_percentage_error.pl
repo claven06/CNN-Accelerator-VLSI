@@ -94,13 +94,14 @@ sub get_mpe { # Calculate the mean percentage error for the results
             # mean percentage error = (|benchmark - test| / benchmark) x 100%
             if (@$benchmark_ref[$counter] == @$test_ref[$counter]) {
                 $percentage_error = 0;
-            } if (@$benchmark_ref[$counter] > @$test_ref[$counter]) {
+            } elsif (@$benchmark_ref[$counter] > @$test_ref[$counter]) {
                 $percentage_error = (@$benchmark_ref[$counter] - @$test_ref[$counter]) * 100 / @$benchmark_ref[$counter];
             } else {
                 $percentage_error = (@$test_ref[$counter] - @$benchmark_ref[$counter]) * 100 / @$benchmark_ref[$counter];
             }
 
             $sum_percentage_error = $sum_percentage_error + $percentage_error;
+            $counter++;
         }
 
         # Divide by number of elements
