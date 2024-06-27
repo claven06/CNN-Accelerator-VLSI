@@ -1,5 +1,5 @@
 module PE #(
-    parameter approxBits = 6
+    parameter approx_bits = 6
 )(
     input clk,
     input rst_n,
@@ -58,7 +58,7 @@ end
 
 ADD_APPROX #(
     .bitWidth(16), 
-    .approxBits(approxBits)
+    .approxBits(approx_bits)
     ) 
 ADD0_LAYER0 (
     .A(product[0]),
@@ -70,7 +70,7 @@ ADD0_LAYER0 (
 
 ADD_APPROX #(
     .bitWidth(16), 
-    .approxBits(approxBits)
+    .approxBits(approx_bits)
     ) 
 ADD1_LAYER0 (
     .A(product[2]),
@@ -82,7 +82,7 @@ ADD1_LAYER0 (
 
 ADD_APPROX #(
     .bitWidth(17), 
-    .approxBits(approxBits)
+    .approxBits(approx_bits)
     ) 
 ADD0_LAYER1 (
     .A(pp_sum[0]),
