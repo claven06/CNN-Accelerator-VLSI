@@ -79,8 +79,8 @@ sub read_file2array {
 sub get_mpe { # Calculate the mean percentage error for the results
     my ($benchmark_ref, $test_ref) = @_;
 
-    $size_benchmark = scalar @$benchmark_ref;
-    $size_test = scalar @$test_ref;
+    my $size_benchmark = scalar @$benchmark_ref;
+    my $size_test = scalar @$test_ref;
 
     if ($size_benchmark != $size_test) {
         die "-E-: Benchmark and Test number of elements are not equal.\nBenchmark = $size_benchmark, Test = $size_test\n";
@@ -92,12 +92,12 @@ sub get_mpe { # Calculate the mean percentage error for the results
 
         foreach my $num (@$benchmark_ref) {
             # mean percentage error = (|benchmark - test| / benchmark) x 100%
-            if (@$benchmark_ref[$counter] == @$test_ref[$counter]) {
+            if ($$benchmark_ref[$counter] == $$test_ref[$counter]) {
                 $percentage_error = 0;
-            } elsif (@$benchmark_ref[$counter] > @$test_ref[$counter]) {
-                $percentage_error = (@$benchmark_ref[$counter] - @$test_ref[$counter]) * 100 / @$benchmark_ref[$counter];
+            } elsif ($$benchmark_ref[$counter] > $$test_ref[$counter]) {
+                $percentage_error = ($$benchmark_ref[$counter] - $$test_ref[$counter]) * 100 / $$benchmark_ref[$counter];
             } else {
-                $percentage_error = (@$test_ref[$counter] - @$benchmark_ref[$counter]) * 100 / @$benchmark_ref[$counter];
+                $percentage_error = ($$test_ref[$counter] - $$benchmark_ref[$counter]) * 100 / $$benchmark_ref[$counter];
             }
 
             $sum_percentage_error = $sum_percentage_error + $percentage_error;
