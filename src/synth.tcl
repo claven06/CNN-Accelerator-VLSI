@@ -34,13 +34,13 @@ set_max_transition  1.0 [get_designs $DESIGN]
 set_max_capacitance 1.0 [get_designs $DESIGN]
 
 # Constraints
-set_drive    0.001000 [all_inputs]
-set_load    0.0003 [all_outputs]
+set_drive    0.5000 [all_inputs]
+set_load    0.0005 [all_outputs]
 
-create_clock -name CCLK_CLK -period 1.2 [get_ports clk]
+create_clock -name CCLK_CLK -period 4.0 [get_ports clk]
 
-set_input_delay  .5 -max -clock {CCLK_CLK} [remove_from_collection [all_inputs] [get_ports clk]]
-set_output_delay .5 -max -clock {CCLK_CLK} [all_outputs]
+set_input_delay  0.5 -max -clock {CCLK_CLK} [remove_from_collection [all_inputs] [get_ports clk]]
+set_output_delay 0.5 -max -clock {CCLK_CLK} [all_outputs]
 
 set_clock_uncertainty 0.0001 -setup [all_clocks]
 
@@ -50,7 +50,7 @@ check_design
 redirect ../rpt/${DESIGN}_check_design.rpt "check_design"
 
 # flatten it all, this forces all the hierarchy to be flattened out
-set_flatten true -effort high
+##set_flatten true -effort high
 uniquify
 
 # Compile Design
@@ -66,9 +66,13 @@ write -format ddc -hierarchy -output ../rpt/${DESIGN}_mapped.ddc
 write_sdf ../rpt/CONV_ACC_time.sdf
 
 # Reports
-redirect ../rpt/${DESIGN}_timing.rpt    "report_timing"
+redirect ../rpt/${DESIGN}_timing_setup.rpt    "report_timing"
+redirect ../rpt/${DESIGN}_timing_hold.rpt    "report_timing -delay_type min"
 redirect ../rpt/${DESIGN}_area.rpt      "report_area -hier"
 redirect ../rpt/${DESIGN}_qor.rpt       "report_qor"
-redirect ../rpt/${DESIGN}_power.rpt      "report_power -hier"
-
+redirect ../rpt/${DESIGN}_power.rpt      "report_power -groups {io_pad memory black_box clock_network register sequential combinational} -analysis_effort medium"
+redirect ../rpt/${DESIGN}_clock.rpt "report_clock"
+redirect ../rpt/${DESIGN}_units.rpt "report_units"
 set_svf -off
+
+exit
