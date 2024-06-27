@@ -94,6 +94,7 @@ sub get_mpe { # Calculate the mean percentage error for the results
             # mean percentage error = (|benchmark - test| / benchmark) x 100%
             if ($$benchmark_ref[$counter] == 0) {
                 $percentage_error = 0;
+                $size_benchmark--; # Exclude zero elements from the calculation
             } elsif ($$benchmark_ref[$counter] == $$test_ref[$counter]) {
                 $percentage_error = 0;
             } elsif ($$benchmark_ref[$counter] > $$test_ref[$counter]) {
