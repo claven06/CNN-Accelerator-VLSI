@@ -4,7 +4,8 @@
 module PSUM_BUFF #(
     parameter data_width = 25,
     parameter addr_width = 8,
-    parameter depth      = 61
+    parameter depth      = 61,
+    parameter approx_bits = 6
 ) (
     input clk,
     input rst_n,
@@ -141,7 +142,10 @@ module PSUM_BUFF #(
             p_write_zero_reg <= p_write_zero;
     end
     /// Adder tree
-    PSUM_ADD #(.data_width(data_width)) adder_tree (
+    PSUM_ADD #(
+        .data_width(data_width),
+        .approx_bits(approx_bits)
+    ) adder_tree (
         .clk(clk),
         .rst_n(rst_n),
         .pe0_data(pe0_data),
