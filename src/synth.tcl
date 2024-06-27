@@ -16,8 +16,7 @@ set DESIGN    "CONV_ACC"
 # SVF For Formality
 set_svf ../rpt/${DESIGN}_formal.svf
 
-
-
+# Read in the CONV_ACC design alongside submodules
 analyze -format verilog -vcs "-f ./filelist_synth.f"
 elaborate        ${DESIGN}
 current_design    ${DESIGN}
@@ -41,7 +40,7 @@ set_max_capacitance 1.0 [get_designs $DESIGN]
 set_drive    0.5000 [all_inputs]
 set_load    0.0005 [all_outputs]
 
-create_clock -name CCLK_CLK -period 4.0 [get_ports clk]
+create_clock -name CCLK_CLK -period 3.0 [get_ports clk]
 
 set_input_delay  0.5 -max -clock {CCLK_CLK} [remove_from_collection [all_inputs] [get_ports clk]]
 set_output_delay 0.5 -max -clock {CCLK_CLK} [all_outputs]
