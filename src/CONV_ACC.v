@@ -5,7 +5,8 @@
 module CONV_ACC #(
     parameter out_data_width = 25,
     parameter buf_addr_width = 5,
-    parameter buf_depth      = 16
+    parameter buf_depth      = 16,
+    parameter approx_bits    = 6
 ) (
     input  clk,
     input  rst_n,
@@ -116,51 +117,51 @@ module CONV_ACC #(
 	WGT_BUF wgt_buf3( .clk(clk), .rst_n(rst_n), .wgt_input(wgts[3]), .wgt_read(wgt_read_en), 
 	.wgt_buf0(wgt_buf30), .wgt_buf1(wgt_buf31), .wgt_buf2(wgt_buf32), .wgt_buf3(wgt_buf33));
     
-	PE pe00( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf00), .ifm_input1(ifm_buf01), .ifm_input2(ifm_buf02), .ifm_input3(ifm_buf03), 
+	PE #(.approx_bits(approx_bits)) pe00( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf00), .ifm_input1(ifm_buf01), .ifm_input2(ifm_buf02), .ifm_input3(ifm_buf03), 
 	.wgt_input0(wgt_buf00), .wgt_input1(wgt_buf01), .wgt_input2(wgt_buf02), .wgt_input3(wgt_buf03), .p_sum(pe00_data) );
-	PE pe01( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf10), .ifm_input1(ifm_buf11), .ifm_input2(ifm_buf12), .ifm_input3(ifm_buf13), 
+	PE #(.approx_bits(approx_bits)) pe01( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf10), .ifm_input1(ifm_buf11), .ifm_input2(ifm_buf12), .ifm_input3(ifm_buf13), 
 	.wgt_input0(wgt_buf00), .wgt_input1(wgt_buf01), .wgt_input2(wgt_buf02), .wgt_input3(wgt_buf03), .p_sum(pe01_data) );
-	PE pe02( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf20), .ifm_input1(ifm_buf21), .ifm_input2(ifm_buf22), .ifm_input3(ifm_buf23), 
+	PE #(.approx_bits(approx_bits)) pe02( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf20), .ifm_input1(ifm_buf21), .ifm_input2(ifm_buf22), .ifm_input3(ifm_buf23), 
 	.wgt_input0(wgt_buf00), .wgt_input1(wgt_buf01), .wgt_input2(wgt_buf02), .wgt_input3(wgt_buf03), .p_sum(pe02_data) );
-	PE pe03( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf30), .ifm_input1(ifm_buf31), .ifm_input2(ifm_buf32), .ifm_input3(ifm_buf33), 
+	PE #(.approx_bits(approx_bits)) pe03( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf30), .ifm_input1(ifm_buf31), .ifm_input2(ifm_buf32), .ifm_input3(ifm_buf33), 
 	.wgt_input0(wgt_buf00), .wgt_input1(wgt_buf01), .wgt_input2(wgt_buf02), .wgt_input3(wgt_buf03), .p_sum(pe03_data) );
-	PE pe04( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf40), .ifm_input1(ifm_buf41), .ifm_input2(ifm_buf42), .ifm_input3(ifm_buf43), 
+	PE #(.approx_bits(approx_bits)) pe04( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf40), .ifm_input1(ifm_buf41), .ifm_input2(ifm_buf42), .ifm_input3(ifm_buf43), 
 	.wgt_input0(wgt_buf00), .wgt_input1(wgt_buf01), .wgt_input2(wgt_buf02), .wgt_input3(wgt_buf03), .p_sum(pe04_data) );
 
 
-	PE pe10( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf10), .ifm_input1(ifm_buf11), .ifm_input2(ifm_buf12), .ifm_input3(ifm_buf13), 
+	PE #(.approx_bits(approx_bits)) pe10( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf10), .ifm_input1(ifm_buf11), .ifm_input2(ifm_buf12), .ifm_input3(ifm_buf13), 
 	.wgt_input0(wgt_buf10), .wgt_input1(wgt_buf11), .wgt_input2(wgt_buf12), .wgt_input3(wgt_buf13), .p_sum(pe10_data) );
-	PE pe11( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf20), .ifm_input1(ifm_buf21), .ifm_input2(ifm_buf22), .ifm_input3(ifm_buf23), 
+	PE #(.approx_bits(approx_bits)) pe11( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf20), .ifm_input1(ifm_buf21), .ifm_input2(ifm_buf22), .ifm_input3(ifm_buf23), 
 	.wgt_input0(wgt_buf10), .wgt_input1(wgt_buf11), .wgt_input2(wgt_buf12), .wgt_input3(wgt_buf13), .p_sum(pe11_data) );
-	PE pe12( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf30), .ifm_input1(ifm_buf31), .ifm_input2(ifm_buf32), .ifm_input3(ifm_buf33), 
+	PE #(.approx_bits(approx_bits)) pe12( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf30), .ifm_input1(ifm_buf31), .ifm_input2(ifm_buf32), .ifm_input3(ifm_buf33), 
 	.wgt_input0(wgt_buf10), .wgt_input1(wgt_buf11), .wgt_input2(wgt_buf12), .wgt_input3(wgt_buf13), .p_sum(pe12_data) );
-	PE pe13( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf40), .ifm_input1(ifm_buf41), .ifm_input2(ifm_buf42), .ifm_input3(ifm_buf43), 
+	PE #(.approx_bits(approx_bits)) pe13( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf40), .ifm_input1(ifm_buf41), .ifm_input2(ifm_buf42), .ifm_input3(ifm_buf43), 
 	.wgt_input0(wgt_buf10), .wgt_input1(wgt_buf11), .wgt_input2(wgt_buf12), .wgt_input3(wgt_buf13), .p_sum(pe13_data) );
-	PE pe14( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf50), .ifm_input1(ifm_buf51), .ifm_input2(ifm_buf52), .ifm_input3(ifm_buf53), 
+	PE #(.approx_bits(approx_bits)) pe14( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf50), .ifm_input1(ifm_buf51), .ifm_input2(ifm_buf52), .ifm_input3(ifm_buf53), 
 	.wgt_input0(wgt_buf10), .wgt_input1(wgt_buf11), .wgt_input2(wgt_buf12), .wgt_input3(wgt_buf13), .p_sum(pe14_data) );
 
 
-	PE pe20( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf20), .ifm_input1(ifm_buf21), .ifm_input2(ifm_buf22), .ifm_input3(ifm_buf23), 
+	PE #(.approx_bits(approx_bits)) pe20( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf20), .ifm_input1(ifm_buf21), .ifm_input2(ifm_buf22), .ifm_input3(ifm_buf23), 
 	.wgt_input0(wgt_buf20), .wgt_input1(wgt_buf21), .wgt_input2(wgt_buf22), .wgt_input3(wgt_buf23), .p_sum(pe20_data) );
-	PE pe21( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf30), .ifm_input1(ifm_buf31), .ifm_input2(ifm_buf32), .ifm_input3(ifm_buf33), 
+	PE #(.approx_bits(approx_bits)) pe21( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf30), .ifm_input1(ifm_buf31), .ifm_input2(ifm_buf32), .ifm_input3(ifm_buf33), 
 	.wgt_input0(wgt_buf20), .wgt_input1(wgt_buf21), .wgt_input2(wgt_buf22), .wgt_input3(wgt_buf23), .p_sum(pe21_data) );
-	PE pe22( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf40), .ifm_input1(ifm_buf41), .ifm_input2(ifm_buf42), .ifm_input3(ifm_buf43), 
+	PE #(.approx_bits(approx_bits)) pe22( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf40), .ifm_input1(ifm_buf41), .ifm_input2(ifm_buf42), .ifm_input3(ifm_buf43), 
 	.wgt_input0(wgt_buf20), .wgt_input1(wgt_buf21), .wgt_input2(wgt_buf22), .wgt_input3(wgt_buf23), .p_sum(pe22_data) );
-	PE pe23( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf50), .ifm_input1(ifm_buf51), .ifm_input2(ifm_buf52), .ifm_input3(ifm_buf53), 
+	PE #(.approx_bits(approx_bits)) pe23( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf50), .ifm_input1(ifm_buf51), .ifm_input2(ifm_buf52), .ifm_input3(ifm_buf53), 
 	.wgt_input0(wgt_buf20), .wgt_input1(wgt_buf21), .wgt_input2(wgt_buf22), .wgt_input3(wgt_buf23), .p_sum(pe23_data) );
-	PE pe24( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf60), .ifm_input1(ifm_buf61), .ifm_input2(ifm_buf62), .ifm_input3(ifm_buf63), 
+	PE #(.approx_bits(approx_bits)) pe24( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf60), .ifm_input1(ifm_buf61), .ifm_input2(ifm_buf62), .ifm_input3(ifm_buf63), 
 	.wgt_input0(wgt_buf20), .wgt_input1(wgt_buf21), .wgt_input2(wgt_buf22), .wgt_input3(wgt_buf23), .p_sum(pe24_data) );
 
 
-	PE pe30( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf30), .ifm_input1(ifm_buf31), .ifm_input2(ifm_buf32), .ifm_input3(ifm_buf33), 
+	PE #(.approx_bits(approx_bits)) pe30( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf30), .ifm_input1(ifm_buf31), .ifm_input2(ifm_buf32), .ifm_input3(ifm_buf33), 
 	.wgt_input0(wgt_buf30), .wgt_input1(wgt_buf31), .wgt_input2(wgt_buf32), .wgt_input3(wgt_buf33), .p_sum(pe30_data) );
-	PE pe31( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf40), .ifm_input1(ifm_buf41), .ifm_input2(ifm_buf42), .ifm_input3(ifm_buf43), 
+	PE #(.approx_bits(approx_bits)) pe31( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf40), .ifm_input1(ifm_buf41), .ifm_input2(ifm_buf42), .ifm_input3(ifm_buf43), 
 	.wgt_input0(wgt_buf30), .wgt_input1(wgt_buf31), .wgt_input2(wgt_buf32), .wgt_input3(wgt_buf33), .p_sum(pe31_data) );
-	PE pe32( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf50), .ifm_input1(ifm_buf51), .ifm_input2(ifm_buf52), .ifm_input3(ifm_buf53), 
+	PE #(.approx_bits(approx_bits)) pe32( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf50), .ifm_input1(ifm_buf51), .ifm_input2(ifm_buf52), .ifm_input3(ifm_buf53), 
 	.wgt_input0(wgt_buf30), .wgt_input1(wgt_buf31), .wgt_input2(wgt_buf32), .wgt_input3(wgt_buf33), .p_sum(pe32_data) );
-	PE pe33( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf60), .ifm_input1(ifm_buf61), .ifm_input2(ifm_buf62), .ifm_input3(ifm_buf63), 
+	PE #(.approx_bits(approx_bits)) pe33( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf60), .ifm_input1(ifm_buf61), .ifm_input2(ifm_buf62), .ifm_input3(ifm_buf63), 
 	.wgt_input0(wgt_buf30), .wgt_input1(wgt_buf31), .wgt_input2(wgt_buf32), .wgt_input3(wgt_buf33), .p_sum(pe33_data) );
-	PE pe34( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf70), .ifm_input1(ifm_buf71), .ifm_input2(ifm_buf72), .ifm_input3(ifm_buf73), 
+	PE #(.approx_bits(approx_bits)) pe34( .clk(clk), .rst_n(rst_n), .ifm_input0(ifm_buf70), .ifm_input1(ifm_buf71), .ifm_input2(ifm_buf72), .ifm_input3(ifm_buf73), 
 	.wgt_input0(wgt_buf30), .wgt_input1(wgt_buf31), .wgt_input2(wgt_buf32), .wgt_input3(wgt_buf33), .p_sum(pe34_data) );	
 
     ///==-------------------------------------------------------------------------------------==
@@ -208,7 +209,8 @@ module CONV_ACC #(
     PSUM_BUFF #(
         .data_width(out_data_width),
         .addr_width(buf_addr_width),
-        .depth(buf_depth)
+        .depth(buf_depth),
+        .approx_bits(approx_bits)
     ) psum_buff0 (
         .clk(clk),
         .rst_n(rst_n),
@@ -227,7 +229,8 @@ module CONV_ACC #(
     PSUM_BUFF #(
         .data_width(out_data_width),
         .addr_width(buf_addr_width),
-        .depth(buf_depth)
+        .depth(buf_depth),
+        .approx_bits(approx_bits)
     ) psum_buff1 (
         .clk(clk),
         .rst_n(rst_n),
@@ -246,7 +249,8 @@ module CONV_ACC #(
     PSUM_BUFF #(
         .data_width(out_data_width),
         .addr_width(buf_addr_width),
-        .depth(buf_depth)
+        .depth(buf_depth),
+        .approx_bits(approx_bits)
     ) psum_buff2 (
         .clk(clk),
         .rst_n(rst_n),
@@ -265,7 +269,8 @@ module CONV_ACC #(
     PSUM_BUFF #(
         .data_width(out_data_width),
         .addr_width(buf_addr_width),
-        .depth(buf_depth)
+        .depth(buf_depth),
+        .approx_bits(approx_bits)
     ) psum_buff3 (
         .clk(clk),
         .rst_n(rst_n),
@@ -284,7 +289,8 @@ module CONV_ACC #(
     PSUM_BUFF #(
         .data_width(out_data_width),
         .addr_width(buf_addr_width),
-        .depth(buf_depth)
+        .depth(buf_depth),
+        .approx_bits(approx_bits)
     ) psum_buff4 (
         .clk(clk),
         .rst_n(rst_n),
