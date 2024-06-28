@@ -2,11 +2,6 @@
 # you also need to change tb_conv.v to suit your mode 
 set MODE="8x8t"
 
-# Generate reports directory
-cd ../
-mkdir rpt/
-cd script/
-
 # Compile cnn kernels
 # echo "\033[32m[ConvKernel: ] Start to build whole systems \033[0m"
 cd ../src/
@@ -20,7 +15,9 @@ endif
 mkdir build 
 cd build
 cp ../Makefile ./
-source /synopsys/synopsys.csh
+
+source /synopsys/synopsys.csh # Source the license file to run Synopsys Tools (directory may vary)
+
 make comp -s
 
 echo "\033[32m[ConvKernel: ] Copy benchmarks, under mode: ${MODE} \033[0m"
