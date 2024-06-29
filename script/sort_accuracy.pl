@@ -37,8 +37,6 @@ foreach my $num (0 .. $#array) {
     }
 }
 
-print Dumper \%data_hash;
-
 open (my $fh, '>', $output_file) or die "-E-: Could not open $output_file ($!)\n";
 
 foreach my $approx (sort { $a <=> $b } keys %data_hash) {
