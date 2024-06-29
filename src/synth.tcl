@@ -16,7 +16,8 @@ set DESIGN    "CONV_ACC"
 # SVF For Formality
 set_svf ../rpt/${DESIGN}_formal.svf
 
-# Read in the CONV_ACC design alongside submodules
+
+
 analyze -format verilog -vcs "-f ./filelist_synth.f"
 elaborate        ${DESIGN}
 current_design    ${DESIGN}
