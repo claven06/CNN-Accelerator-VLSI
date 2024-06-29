@@ -63,7 +63,7 @@ for i in {1..5}; do
 done
 
 # Reformat the output file in ascending order of approx bits
-cd ../script || exit
+cd ../../script || exit
 ./sort_accuracy.pl
 rm "$output_file"
 mv "$output_file.tmp" "$output_file"
