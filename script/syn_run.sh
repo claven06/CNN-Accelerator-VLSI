@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Remove the output file if it exists
+rm ./synthesis_summary.txt
+
 # Move to src directory to edit CONV_ACC.v file
 cd ../src || exit
 
@@ -43,7 +46,7 @@ while [ $approx_bits -le 16 ]; do
     echo "Done changing approx bits in $filename"
     echo "Initiating synthesis..."
 
-    dc_shell-t -f synth.tcl | tee -i run.log
+    dc_shell -f synth.tcl | tee -i run.log
 
     echo "Synthesis done"
 
@@ -69,9 +72,9 @@ while [ $approx_bits -le 16 ]; do
 
     echo "Done Iteration for approx_bits = $approx_bits"
 
-    approx_bits=$(( approx_bits + 2 ))
-
+    # approx_bits=$(( approx_bits + 2 ))
+    approx_bits=$(( approx_bits + 16 ))
     cd ../src || exit
 done
 
-# Insert Perl script here (after the loop) to scrap relevant data from the reports
+./report_extract.pl
