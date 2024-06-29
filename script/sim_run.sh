@@ -61,3 +61,9 @@ for i in {1..5}; do
 
     cd ../data/8x8t || exit
 done
+
+# Reformat the output file in ascending order of approx bits
+cd ../script || exit
+./sort_accuracy.pl
+rm "$output_file"
+mv "$output_file.tmp" "$output_file"
