@@ -21,6 +21,8 @@ for i in {1..5}; do
     # Set the filename
     filename="CONV_ACC.v"
 
+    echo "Dataset: Set $i" >> "$output_file"
+
     approx_bits=0
     while [ $approx_bits -le 16 ]; do
         # Set the new content
@@ -47,8 +49,7 @@ for i in {1..5}; do
 
         cd ../script || exit
         ./build_cnn.sh
-
-        echo "Dataset: Set $i, Approx_Bits: $approx_bits" >> "$output_file"
+        echo -n "Approx_Bits: $approx_bits, " >> "$output_file"
         ./mean_percentage_error.pl >> "$output_file"
 
         approx_bits=$(( approx_bits + 2 ))
