@@ -72,9 +72,10 @@ while [ $approx_bits -le 16 ]; do
 
     echo "Done Iteration for approx_bits = $approx_bits"
 
-    # approx_bits=$(( approx_bits + 2 ))
-    approx_bits=$(( approx_bits + 16 ))
+    approx_bits=$(( approx_bits + 2 ))
+    #approx_bits=$(( approx_bits + 16 ))
     cd ../src || exit
 done
 
+cd ../script
 ./report_extract.pl
