@@ -16,7 +16,8 @@ mkdir build
 cd build
 cp ../Makefile ./
 
-source /synopsys/synopsys.csh # Source the license file to run Synopsys Tools (directory may vary)
+# Source the license file to run Synopsys Tools (directory may vary)
+source /synopsys/synopsys.csh
 
 make comp -s
 
