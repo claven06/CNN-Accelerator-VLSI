@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Remove the output file if it exists
-output_file="output.rpt"
+output_file="accuracy_report.txt"
 rm $output_file
 
 # Go into data/8x8t directory
