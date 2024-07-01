@@ -64,6 +64,6 @@ done
 
 # Reformat the output file in ascending order of approx bits
 cd ../../script || exit
-./sort_accuracy.pl
-rm "$output_file"
+./sort_accuracy.pl -i "$output_file"
+rm "$output_file" 
 mv "$output_file.tmp" "$output_file"
