@@ -1,13 +1,15 @@
 #!/usr/bin/perl
 
+use Getopt::Long qw(GetOptions);
 use Data::Dumper qw(Dumper);
+
+GetOptions (
+    'input|i=s'   => \$input_file,
+) or die "-E-: Command line error\n";
 
 #######################################
 #       DEFINE GLOBAL VARIABLES       #
 #######################################
-
-# Report file path
-$input_file = "accuracy_report.txt";
 
 # Array to store input data
 @array;
@@ -16,7 +18,7 @@ $input_file = "accuracy_report.txt";
 %data_hash;
 
 # Output file
-$output_file = "accuracy_report.txt.tmp";
+$output_file = "$input_file.tmp";
 
 #############################
 #       START OF MAIN       #
