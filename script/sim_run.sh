@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Remove the output file if it exists
-output_file="accuracy_report.txt"
+output_file="accuracy_report_sim.txt"
 rm $output_file
 
 # Go into data/8x8t directory
@@ -52,7 +52,7 @@ for i in {1..5}; do
         cd ../script || exit
         ./build_cnn.sh
         echo -n "  Approx_Bits: $approx_bits, " >> "$output_file"
-        ./mean_percentage_error.pl >> "$output_file"
+        ./mean_percentage_error.pl -t ../src/build/conv_acc_out.txt >> "$output_file"
 
         approx_bits=$(( approx_bits + 2 ))
 
