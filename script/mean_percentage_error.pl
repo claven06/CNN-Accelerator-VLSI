@@ -3,8 +3,6 @@
 use Getopt::Long qw(GetOptions);
 use Data::Dumper qw(Dumper);
 
-$argv_num = @ARGV;
-
 GetOptions (
     'test|t=s'   => \$test_file_path,
 ) or die "-E-: Command line error\n";
