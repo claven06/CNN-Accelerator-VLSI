@@ -12,7 +12,7 @@ GetOptions (
 #######################################
 
 # File path
-$benchmark_file_path = "../src/build/ofm.txt";
+$benchmark_file_path = "../data/8x8t/ofm.txt";
 #$test_file_path = "../src/build/conv_acc_out.txt";
 
 # Arrays to store each element of files
