@@ -1,6 +1,13 @@
 #!/usr/bin/perl
 
+use Getopt::Long qw(GetOptions);
 use Data::Dumper qw(Dumper);
+
+$argv_num = @ARGV;
+
+GetOptions (
+    'test|t=s'   => \$test_file_path,
+) or die "-E-: Command line error\n";
 
 #######################################
 #       DEFINE GLOBAL VARIABLES       #
@@ -8,7 +15,7 @@ use Data::Dumper qw(Dumper);
 
 # File path
 $benchmark_file_path = "../src/build/ofm.txt";
-$test_file_path = "../src/build/conv_acc_out.txt";
+#$test_file_path = "../src/build/conv_acc_out.txt";
 
 # Arrays to store each element of files
 @benchmark_array;
