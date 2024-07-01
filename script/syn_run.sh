@@ -59,8 +59,8 @@ while [ $approx_bits -le 16 ]; do
         line_count=$(( line_count + 1 ))
     done < "filelist_synth.f"
 
-    rm "filelist_synth"
-    mv "$tmpfilelist" "filelist_synth"
+    rm "filelist_synth.f"
+    mv "$tmpfilelist" "filelist_synth.f"
 
     # Start synthesis
     echo "Initiating synthesis..."
