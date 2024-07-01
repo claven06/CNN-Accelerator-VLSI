@@ -44,24 +44,6 @@ while [ $approx_bits -le 16 ]; do
     mv "$tmpfile" "$filename"
     echo "Done changing approx bits in $filename"
 
-    # Use synthesized adders for the design
-    new_filelist="../../approx_add/gen_rpt/approx_${approx_bits}_ADD_APPROX.syn.v"
-    tmpfilelist="filelist_synth.f.tmp"
-
-    line_count=1
-    while IFS= read -r line
-    do
-        if [[ $line_count -eq 1 ]]; then
-            echo "$new_filelist" >> "$tmpfilelist"
-        else
-            echo "$line" >> "$tmpfilelist"
-        fi
-        line_count=$(( line_count + 1 ))
-    done < "filelist_synth.f"
-
-    rm "filelist_synth.f"
-    mv "$tmpfilelist" "filelist_synth.f"
-
     # Start synthesis
     echo "Initiating synthesis..."
     dc_shell -f synth.tcl | tee -i run.log
