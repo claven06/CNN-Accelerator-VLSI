@@ -110,8 +110,9 @@ sub read_area {
     close $ar;
 
     my $seq_area = $array[5] - $array[4];
+    my $total_cell = $array[0] + $array[1] + $array[2];
 
-    print $fh "    Combi cells: $array[0], Seq cells: $array[1], Buf/Inv: $array[2], Combi area: $array[3], Seq area: $seq_area, Buf/Inv area: $array[4], Total area: $array[6]\n";
+    print $fh "    Combi cells: $array[0], Seq cells: $array[1], Buf/Inv: $array[2], Total cells: $total_cell, Combi area: $array[3], Seq area: $seq_area, Buf/Inv area: $array[4], Total area: $array[6]\n";
 }
 
 sub read_power {
