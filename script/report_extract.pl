@@ -97,6 +97,10 @@ sub read_area {
             push @array, $1;
         }
 
+        if ($line =~ m/Noncombinational\s+area:\s+(\d+\.\d+).*/) {
+            push @array, $1;
+        }
+
         if ($line =~ m/Total\s+area:\s+(\d+\.\d+).*/) {
             push @array, $1;
         }
@@ -105,7 +109,9 @@ sub read_area {
     # Close the report
     close $ar;
 
-    print $fh "    Combi cells: $array[0], Seq cells: $array[1], Buf/Inv: $array[2], Combi area: $array[3], Buf/Inv area: $array[4], Total area: $array[5]\n";
+    my $seq_area = $array[5] - $array[4];
+
+    print $fh "    Combi cells: $array[0], Seq cells: $array[1], Buf/Inv: $array[2], Combi area: $array[3], Seq area: $seq_area, Buf/Inv area: $array[4], Total area: $array[6]\n";
 }
 
 sub read_power {
